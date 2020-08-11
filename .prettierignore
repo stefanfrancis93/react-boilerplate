@@ -1,0 +1,13 @@
+## extensions
+*.*
+LICENSE
+!*.css
+!*.js
+!*.json
+!*.md
+!*.ts
+!*.tsx
+
+## same as in .gitignore
+/build
+/node_modules
