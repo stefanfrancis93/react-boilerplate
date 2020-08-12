@@ -15,17 +15,17 @@
     "lint": "yarn lint:eslint && yarn lint:prettier",
     "lint:eslint": "eslint \"**/*\"",
     "lint:prettier": "prettier --check \"**/*\"",
-    "test": "jest",
-    "test:watch": "yarn run test --watch",
-    "test:coverage": "yarn run test --coverage",
-    "precommit": "yarn run lint && yarn test",
-    "prepush": "yarn run lint"
+    "test": "jest --passWithNoTests",
+    "test:watch": "yarn test --watch",
+    "test:coverage": "yarn test --coverage"
   },
   "dependencies": {
     "cross-env": "^7.0.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.2.0"
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -59,18 +59,33 @@
     "eslint-plugin-simple-import-sort": "^5.0.3",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "husky": "^4.2.5",
     "img-loader": "^3.0.1",
     "jest": "^26.3.0",
     "jest-dom": "^4.0.0",
+    "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
     "react-refresh": "^0.8.3",
     "react-testing-library": "^8.0.1",
+    "redux-logger": "^3.0.6",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-jarvis": "^0.3.2",
     "webpack-merge": "^5.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn test && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "setupFiles": [
